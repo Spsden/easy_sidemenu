@@ -33,6 +33,9 @@ class SideMenuStyle {
   /// Color of icon when item is selected
   Color? selectedIconColor;
 
+  /// Color of Indicator
+  Color? indicatorColor;
+
   /// Color of icon when item is unselected
   Color? unselectedIconColor;
 
@@ -75,6 +78,7 @@ class SideMenuStyle {
     this.selectedTitleTextStyle,
     this.unselectedTitleTextStyle,
     this.selectedIconColor = Colors.black,
+    this.indicatorColor = Colors.black,
     this.unselectedIconColor = Colors.black54,
     this.iconSize = 24,
     this.decoration,

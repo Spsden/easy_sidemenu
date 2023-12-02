@@ -43,6 +43,8 @@ class SideMenuItem {
   final Widget Function(BuildContext context, SideMenuDisplayMode displayMode)?
       builder;
 
+  final bool? showIndicator;
+
   const SideMenuItem({
     this.onTap,
     this.title,
@@ -53,6 +55,7 @@ class SideMenuItem {
     this.tooltipContent,
     this.trailing,
     this.builder,
+    this.showIndicator
   })  : assert(title != null || icon != null || builder != null,
             'Title, icon and builder should not be empty at the same time'),
         super();

@@ -23,6 +23,7 @@ class SideMenuItemWithGlobal extends StatefulWidget {
     this.tooltipContent,
     this.trailing,
     this.builder,
+    this.showIndicator
   })  : assert(title != null || icon != null || builder != null,
             'Title, icon and builder should not be empty at the same time'),
         super(key: key);
@@ -68,6 +69,7 @@ class SideMenuItemWithGlobal extends StatefulWidget {
   ///
   /// Builder has `(BuildContext context, SideMenuDisplayMode displayMode)`
   final SideMenuItemBuilder? builder;
+  final bool? showIndicator;
 
   @override
   State<SideMenuItemWithGlobal> createState() => _SideMenuItemState();
@@ -77,6 +79,8 @@ class _SideMenuItemState extends State<SideMenuItemWithGlobal> {
   late int currentPage = widget.global.controller.currentPage;
   bool isHovered = false;
   bool isDisposed = false;
+    final bool _indicatorState = true;
+
 
   @override
   void initState() {
@@ -229,6 +233,20 @@ class _SideMenuItemState extends State<SideMenuItemWithGlobal> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                         (widget.title == widget.global.items[currentPage].title)
+                                  ? AnimatedContainer(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        color: widget.global.style.indicatorColor ??
+                                            Colors.white,
+                                      ),
+                                      width: 6,
+                                      height: _indicatorState ? 30 : 20,
+                                      duration:
+                                          const Duration(milliseconds: 800),
+                                    )
+                                  : const SizedBox.shrink(),
                         SizedBox(
                           width: widget.global.style.itemInnerSpacing,
                         ),
