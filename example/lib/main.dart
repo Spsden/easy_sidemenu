@@ -1,4 +1,5 @@
 import 'package:easy_sidemenu/easy_sidemenu.dart';
+import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter/material.dart';
 
 void main() {
@@ -160,6 +161,30 @@ class _MyHomePageState extends State<MyHomePage> {
                   sideMenu.changePage(index);
                 },
                 icon: const Icon(Icons.settings),
+              ),
+              SideMenuItem(
+                title: 'Settings',
+                onTap: (index, _) {
+                  sideMenu.changePage(index);
+                },
+                icon: const Icon(Icons.settings),
+                builder: (context, displayMode) {
+                  return ExpansionTile(
+                    title: Text("Expansion Tile"),
+                    children: [
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: 20,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text("submenu $index"),
+                          );
+                        },
+                      )
+                    ],
+                  );
+                },
               ),
               // SideMenuItem(
               //   onTap:(index, _){
